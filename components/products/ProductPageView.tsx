@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, Download, FileText, Mail, Phone, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Download, FileText, Mail, Phone } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { enquiryHref } from "@/lib/enquiry-events";
 import {
@@ -44,7 +44,6 @@ export function ProductPageView({ product }: { product: Product }) {
   const heroImages = [product.image, ...product.gallery.filter((g) => g.kind !== "clinical")];
   const clinical = product.gallery.filter((g) => g.kind === "clinical");
   const subcategoryName = getCategoryName(product.subcategory);
-  const categoryName = getCategoryName(product.category);
   const hasApplications = product.applications.length > 0 || product.focus.length > 0;
 
   const nav = [
@@ -79,9 +78,6 @@ export function ProductPageView({ product }: { product: Product }) {
 
             <div className="lg:pt-4">
               <div className="flex flex-wrap items-center gap-2">
-                <Link href={productHref(product.category)}>
-                  <Badge tone="neutral">{categoryName}</Badge>
-                </Link>
                 <Link href={productHref(product.subcategory)}>
                   <Badge tone="neutral">{subcategoryName}</Badge>
                 </Link>
@@ -105,22 +101,8 @@ export function ProductPageView({ product }: { product: Product }) {
                 </ul>
               ) : null}
 
-              {product.keySpec ? (
-                <p className="mt-6 inline-flex items-start gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-medium text-slate-800 shadow-soft ring-1 ring-slate-200">
-                  <Sparkles aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand-600" />
-                  {product.keySpec}
-                </p>
-              ) : null}
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <ButtonLink href={enquiryHref("quote", product.slug)} data-enquiry="quote" {...ctaData("quote")} size="lg" arrow>
-                  Request a Quote
-                </ButtonLink>
-                <ButtonLink href={enquiryHref("demo", product.slug)} data-enquiry="demo" {...ctaData("demo")} variant="secondary" size="lg">
-                  Book a Demo
-                </ButtonLink>
-              </div>
-              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-600">
+              {/* Client review: "Request product information" is the only hero CTA (no key spec, quote or demo buttons). */}
+              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-600">
                 {product.brochure ? (
                   <a
                     href={product.brochure.url}
@@ -413,7 +395,7 @@ export function ProductPageView({ product }: { product: Product }) {
         location="product"
       />
 
-      <MobileStickyCta product={product.slug} label="Request a Quote" enquiryType="quote" />
+      <MobileStickyCta product={product.slug} label="Request Product Information" enquiryType="product-information" />
       <JsonLd data={productJsonLd(product)} />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
       <JsonLd data={faqJsonLd(faqs)} />

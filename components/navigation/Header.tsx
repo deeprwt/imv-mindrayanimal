@@ -4,7 +4,7 @@ import { ChevronDown, Phone } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { mainNav } from "@/data/navigation";
 import { enquiryHref } from "@/lib/enquiry-events";
-import { getAllProducts, getProductBySlug, getSubcategories, productHref } from "@/lib/products";
+import { getAllProducts, getProductBySlug, getProductCategories, productHref } from "@/lib/products";
 import { ButtonLink } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
@@ -13,7 +13,7 @@ import { MobileMenu, type MobileMenuGroup } from "./MobileMenu";
 
 function productGroups(): MobileMenuGroup[] {
   const all = getAllProducts();
-  return getSubcategories("medical-imaging").map((sub) => ({
+  return getProductCategories().map((sub) => ({
     label: sub.name,
     href: productHref(sub.slug),
     items: all

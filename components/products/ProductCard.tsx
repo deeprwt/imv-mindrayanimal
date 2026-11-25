@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Gauge } from "lucide-react";
 import type { ProductSummary } from "@/lib/products";
 import { productHref } from "@/lib/products";
 import { enquiryHref } from "@/lib/enquiry-events";
@@ -61,25 +60,16 @@ export function ProductCard({ product, location, headingLevel: Heading = "h3", c
         </Link>
 
         <div className="flex min-w-0 flex-1 flex-col sm:px-6 sm:pt-6">
+          {/* Client review: cards show only the name, with View Product and Request Info — no summary. */}
           <p className="hidden text-[0.6875rem] font-semibold tracking-[0.14em] text-slate-500 uppercase sm:block">
-            {product.categoryName} · {product.subcategoryName}
+            {product.subcategoryName}
           </p>
           <Heading className="text-base font-semibold tracking-tight sm:mt-2 sm:text-xl">
             <Link href={href} {...track} className="transition-colors hover:text-brand-700">
               {product.name}
             </Link>
           </Heading>
-          <p className="mt-0.5 text-xs font-medium text-slate-500 sm:mt-1 sm:text-sm">{product.productType}</p>
-          <p className="mt-1.5 line-clamp-2 text-[0.8125rem] leading-snug text-slate-600 sm:mt-3 sm:line-clamp-3 sm:text-sm sm:leading-relaxed">
-            {product.shortDescription}
-          </p>
-
-          {product.keySpec ? (
-            <p className="mt-4 hidden items-start gap-2 rounded-xl bg-slate-50 px-3 py-2.5 text-xs font-medium text-slate-700 ring-1 ring-slate-100 sm:flex">
-              <Gauge aria-hidden="true" className="mt-px size-3.5 shrink-0 text-brand-600" />
-              <span className="line-clamp-2">{product.keySpec}</span>
-            </p>
-          ) : null}
+          <p className="mt-0.5 text-xs font-medium text-slate-500 sm:hidden">{product.subcategoryName}</p>
         </div>
       </div>
 

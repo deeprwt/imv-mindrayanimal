@@ -1,31 +1,47 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { legalNav } from "@/data/navigation";
 import { enquiryHref } from "@/lib/enquiry-events";
-import { getAllProducts, getSubcategories, productHref } from "@/lib/products";
+import { getAllProducts, getProductCategories, productHref } from "@/lib/products";
 import { Container } from "@/components/ui/Container";
-import { Logo } from "./Logo";
+
+/** IMV Technologies logo; falls back to the company name until the logo file is added in config/site.ts. */
+function DistributorLogo() {
+  const { distributor } = siteConfig;
+  return (
+    <Link href="/companion-animals" className="inline-flex shrink-0 items-center">
+      {distributor.logo ? (
+        <Image
+          src={distributor.logo.src}
+          alt={`${distributor.name} — home`}
+          width={distributor.logo.width}
+          height={distributor.logo.height}
+          loading="lazy"
+          unoptimized
+          className="h-10 w-auto"
+        />
+      ) : (
+        <span className="text-xl font-semibold tracking-tight text-white">{distributor.name}</span>
+      )}
+    </Link>
+  );
+}
 
 export function Footer() {
   const products = getAllProducts();
-  const subcategories = getSubcategories("medical-imaging");
-  const { contact } = siteConfig;
+  const { contact, distributor } = siteConfig;
 
   const columns = [
     {
       title: "Solutions",
-      links: [
-        { label: "Companion Animals", href: "/companion-animals" },
-        { label: "Medical Imaging", href: "/products/medical-imaging" },
-        ...subcategories.map((s) => ({ label: s.name, href: productHref(s.slug) })),
-        { label: "Imaging Technology", href: "/products/medical-imaging#technologies" },
-      ],
+      links: getProductCategories().map((c) => ({ label: c.name, href: productHref(c.slug) })),
     },
     {
       title: "Products",
       links: [
-        ...products.slice(0, 7).map((p) => ({ label: p.name, href: productHref(p.slug) })),
+        ...products.map((p) => ({ label: p.name, href: productHref(p.slug) })),
         { label: "All products", href: "/products" },
       ],
     },
@@ -48,7 +64,7 @@ export function Footer() {
       </h2>
       <Container className="grid gap-12 py-16 lg:grid-cols-[1.3fr_2fr] lg:py-20">
         <div className="max-w-sm">
-          <Logo tone="light" />
+          <DistributorLogo />
           <p className="mt-6 text-sm leading-relaxed text-slate-400">
             Veterinary ultrasound and medical imaging systems that help veterinary professionals deliver accurate,
             safe and reliable care for companion animals.
@@ -69,8 +85,10 @@ export function Footer() {
             <li className="flex gap-3 text-slate-400">
               <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-slate-500" />
               <address className="not-italic">
-                {contact.address.street}, {contact.address.locality} {contact.address.postalCode},{" "}
-                {contact.address.countryName}
+                <span className="font-medium text-slate-300 uppercase">{distributor.name}</span>
+                <br />
+                {contact.address.street}, {contact.address.locality} – {contact.address.postalCode},{" "}
+                {contact.address.region}, {contact.address.countryName}
               </address>
             </li>
           </ul>

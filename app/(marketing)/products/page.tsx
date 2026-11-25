@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { getAllProducts, getSubcategories, productHref } from "@/lib/products";
+import { getAllProducts, getProductCategories, productHref } from "@/lib/products";
 import { breadcrumbJsonLd, buildMetadata, productListJsonLd } from "@/lib/seo";
 import { EnquirySection } from "@/components/forms/EnquirySection";
 import { CtaBand } from "@/components/marketing/CtaBand";
@@ -29,7 +29,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ProductsPage() {
   const products = getAllProducts();
-  const subcategories = getSubcategories("medical-imaging");
+  const subcategories = getProductCategories();
 
   return (
     <>

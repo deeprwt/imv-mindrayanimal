@@ -8,7 +8,9 @@ import { products } from "./products";
 export const legacyRedirects: { source: string; destination: string }[] = [
   { source: "/en/Companion_Animals", destination: "/companion-animals" },
   { source: "/en/product", destination: "/products" },
-  { source: "/en/product/category/Medical_Imaging_System", destination: "/products/medical-imaging" },
+  { source: "/en/product/category/Medical_Imaging_System", destination: "/products" },
+  // There is no separate Medical Imaging page: only Cart-based and Portable Ultrasound categories.
+  { source: "/products/medical-imaging", destination: "/products" },
   { source: "/en/contactus", destination: "/contact" },
   { source: "/en/aboutus", destination: "/about" },
   ...products.map((p) => ({ source: p.source.legacyPath, destination: `/products/${p.slug}` })),

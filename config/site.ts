@@ -1,8 +1,8 @@
 /**
  * Site-wide brand and contact configuration.
  *
- * Contact details below come from the current mindrayanimal.com footer.
- * Confirm them (or swap in regional details) before launch.
+ * Contact details are IMV India Pvt. Ltd., the exclusive Mindray Animal Medical
+ * distributor in India (client review, Nov 2026).
  */
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/+$/, "");
@@ -15,18 +15,27 @@ export const siteConfig = {
   description:
     "Veterinary ultrasound and medical imaging systems for companion animal care — cart-based and portable systems for veterinary hospitals and clinics.",
   logo: "/brand/mindray-animal-medical-logo.png",
+  /** Distributor that operates this site: named in the enquiry consent, footer and address. */
+  distributor: {
+    name: "IMV India Pvt. Ltd.",
+    /**
+     * IMV Technologies logo for the footer (dark background), e.g. "/brand/imv-technologies-logo-white.png".
+     * While null, the footer shows the company name as text.
+     */
+    logo: null as { src: string; width: number; height: number } | null,
+  },
   contact: {
-    email: "info@mindrayanimal.com",
+    email: "info@imvindia.com",
     serviceEmail: "service@mindrayanimal.com",
-    phoneDisplay: "(86-755) 3399 7000",
-    phoneHref: "+8675533997000",
+    phoneDisplay: "0124-4770707",
+    phoneHref: "+911244770707",
     address: {
-      street:
-        "Tower 4, YESUN Intelligent Community Ⅲ, No.1301-88 Guanguang Road, Xinlan Community, Guanlan Street, Longhua District",
-      locality: "Shenzhen",
-      postalCode: "518110",
-      country: "CN",
-      countryName: "P.R. China",
+      street: "Plot 750, Phase-V, Udyog Vihar",
+      locality: "Gurgaon",
+      region: "Haryana",
+      postalCode: "122016",
+      country: "IN",
+      countryName: "India",
     },
   },
   /** Add official profile URLs to show them in the footer and Organization schema. */

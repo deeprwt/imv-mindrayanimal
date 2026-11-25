@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, FileText, GraduationCap, HelpCircle, Images, ScanLine } from "lucide-react";
+import { ArrowRight, BookOpen, FileText, GraduationCap } from "lucide-react";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { enquiryHref } from "@/lib/enquiry-events";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
@@ -25,29 +25,8 @@ const resources = [
     icon: BookOpen,
     title: "Cart-based or portable?",
     text: "Compare large-display cart-based systems with laptop, hand-carried and touch-screen models.",
-    href: "/products/medical-imaging#products",
+    href: "/products",
     cta: "Compare system types",
-  },
-  {
-    icon: ScanLine,
-    title: "Imaging technology explained",
-    text: "ZST+, UWN+ contrast imaging, elastography, cardiac quantification and needle guidance.",
-    href: "/products/medical-imaging#technologies",
-    cta: "Explore technology",
-  },
-  {
-    icon: Images,
-    title: "Clinical image gallery",
-    text: "Canine, feline and exotic-species clinical images from across the range.",
-    href: "/products/medical-imaging#technologies",
-    cta: "View images",
-  },
-  {
-    icon: HelpCircle,
-    title: "Frequently asked questions",
-    text: "Answers about choosing, comparing and requesting veterinary ultrasound systems.",
-    href: "/products/medical-imaging#faq",
-    cta: "Read FAQs",
   },
 ];
 

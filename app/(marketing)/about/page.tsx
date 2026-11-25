@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Compass, HeartHandshake, Target, Users } from "lucide-react";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { enquiryHref } from "@/lib/enquiry-events";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
@@ -9,12 +8,11 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-/* Content source: mindrayanimal.com/en/aboutus (retrieved 2026-09-28). */
-const values = [
-  { icon: HeartHandshake, title: "Align with our customers" },
-  { icon: Users, title: "Value and enrich our people" },
-  { icon: Target, title: "Be precise and practical" },
-  { icon: Compass, title: "Always forge ahead" },
+/* Intro copy: IMV India (client review, Nov 2026). R&D and milestones: mindrayanimal.com/en/aboutus (retrieved 2026-09-28). */
+const highlights = [
+  "Veterinary Ultrasound Solutions Only",
+  "Trusted Mindray Animal Partner in India",
+  "Nationwide Sales & Support",
 ];
 
 const milestones = [
@@ -32,7 +30,7 @@ const breadcrumbs = [
 export const metadata: Metadata = buildMetadata({
   title: "About Us",
   description:
-    "Mindray Animal Medical, a wholly-owned subsidiary of Mindray Group, provides advanced medical devices and comprehensive solutions for companion animals and more.",
+    "IMV India Pvt. Ltd. is the exclusive distributor of Mindray Animal Medical veterinary ultrasound systems in India, with nationwide sales, training and support.",
   path: "/about",
 });
 
@@ -48,17 +46,11 @@ export default function AboutPage() {
               <h1 className="mt-4 text-4xl leading-[1.06] font-semibold tracking-tight sm:text-5xl">
                 Advanced healthcare for all animals
               </h1>
-              <div className="mt-6 space-y-4 text-lg leading-relaxed text-slate-600">
-                <p>
-                  Shenzhen Mindray Animal Medical Technology Co., LTD. (Mindray Animal Medical), a wholly-owned subsidiary
-                  of Mindray Group, is dedicated to providing advanced medical devices and comprehensive solutions for
-                  animals, including companion animals, farm animals, equine and exotic animals.
-                </p>
-                <p>
-                  We are committed to offering equal access to high-quality healthcare by meeting the different demands
-                  of veterinarians who care for a wide variety of animals.
-                </p>
-              </div>
+              <p className="mt-6 text-lg leading-relaxed text-slate-600">
+                IMV India Pvt. Ltd. is the exclusive distributor of Mindray Animal Medical (China) veterinary ultrasound
+                systems in India. We specialize exclusively in veterinary ultrasound imaging solutions, catering to the
+                needs of animal healthcare professionals across the country.
+              </p>
             </div>
             <div className="relative aspect-[8/5] overflow-hidden rounded-4xl bg-slate-100">
               <Image
@@ -75,14 +67,26 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="values-heading" className="py-16 sm:py-20">
+      <section aria-label="About IMV India" className="pb-16 sm:pb-20">
         <Container>
-          <SectionHeading id="values-heading" eyebrow="Core values" title="What guides our work" />
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v) => (
-              <li key={v.title} className="reveal rounded-3xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                <v.icon aria-hidden="true" className="size-6 text-brand-600" />
-                <h3 className="mt-4 font-semibold">{v.title}</h3>
+          <div className="grid gap-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:grid-cols-2 lg:gap-16">
+            <p>
+              Our portfolio includes a wide range of advanced ultrasound scanners designed specifically for veterinary
+              applications, serving companion animals, equine practices, livestock, and mixed-animal clinics. From
+              portable handheld units to premium cart-based systems, we offer solutions that deliver exceptional image
+              quality, reliability, and ease of use in diverse clinical environments.
+            </p>
+            <p>
+              At IMV India, we provide end-to-end support for veterinary ultrasound requirements, including product
+              consultation, demonstrations, installation, application training, and after-sales service. Our mission
+              is to empower veterinarians with innovative imaging technology that enables accurate diagnosis and
+              improves animal care outcomes.
+            </p>
+          </div>
+          <ul className="mt-10 flex flex-wrap gap-3">
+            {highlights.map((h) => (
+              <li key={h} className="rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-800 ring-1 ring-brand-100">
+                {h}
               </li>
             ))}
           </ul>

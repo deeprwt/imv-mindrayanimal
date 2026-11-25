@@ -516,7 +516,7 @@ export function EnquiryForm({ productOptions, defaultProduct, defaultType = "pro
             className="mt-0.5 size-5 shrink-0 cursor-pointer rounded border-slate-300 accent-brand-600"
           />
           <span>
-            I agree that {siteConfig.name} may use my details to respond to this enquiry, as described in the{" "}
+            I agree that {siteConfig.distributor.name} may use my details to respond to this enquiry, as described in the{" "}
             <Link href="/privacy-policy" className="font-medium text-slate-900 underline underline-offset-2">
               Privacy Policy
             </Link>

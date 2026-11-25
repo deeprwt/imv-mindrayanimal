@@ -48,7 +48,7 @@ export default function CompanionAnimalsPage() {
             id="products-heading"
             eyebrow="Products"
             title="Veterinary ultrasound systems"
-            description={`${products.length} cart-based and portable systems. Search or filter, then open any model for full features and specifications.`}
+            description="Cart-based and portable systems. Search or filter, then open any model for full features and specifications."
           />
           <div className="mt-8">
             <ProductDiscovery />

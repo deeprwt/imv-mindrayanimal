@@ -62,6 +62,19 @@ export function getSubcategories(parent: string): Category[] {
   return categories.filter((c) => c.parent === parent);
 }
 
+/**
+ * The product categories that have their own page: Cart-based and Portable Ultrasound.
+ * "Medical Imaging" is only the internal parent grouping; it has no page (it redirects to /products).
+ */
+export function getProductCategories(): Category[] {
+  return categories.filter((c) => c.parent);
+}
+
+/** A category that has its own /products/[slug] page. */
+export function getProductCategoryBySlug(slug: string): Category | undefined {
+  return getProductCategories().find((c) => c.slug === slug);
+}
+
 /** Products in a category; a parent category includes all of its subcategories. */
 export function getProductsInCategory(slug: string): Product[] {
   return sortProducts(products.filter((p) => p.category === slug || p.subcategory === slug));
@@ -89,22 +102,17 @@ export function getProductBreadcrumbs(product: Product): ProductBreadcrumb[] {
   return [
     { name: "Home", href: "/" },
     { name: "Companion Animals", href: "/companion-animals" },
-    { name: getCategoryName(product.category), href: categoryHref(product.category) },
     { name: getCategoryName(product.subcategory), href: categoryHref(product.subcategory) },
     { name: product.name, href: productHref(product.slug) },
   ];
 }
 
 export function getCategoryBreadcrumbs(category: Category): ProductBreadcrumb[] {
-  const crumbs: ProductBreadcrumb[] = [
+  return [
     { name: "Home", href: "/" },
     { name: "Companion Animals", href: "/companion-animals" },
+    { name: category.name, href: categoryHref(category.slug) },
   ];
-  if (category.parent) {
-    crumbs.push({ name: getCategoryName(category.parent), href: categoryHref(category.parent) });
-  }
-  crumbs.push({ name: category.name, href: categoryHref(category.slug) });
-  return crumbs;
 }
 
 function withArticle(phrase: string): string {

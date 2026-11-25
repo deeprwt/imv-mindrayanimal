@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Check, PawPrint, Phone } from "lucide-react";
-import { siteConfig } from "@/config/site";
+import { PawPrint } from "lucide-react";
 import { enquiryHref } from "@/lib/enquiry-events";
-import { getAllProducts, getProductBySlug, productHref } from "@/lib/products";
+import { getProductBySlug, productHref } from "@/lib/products";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
@@ -20,9 +19,7 @@ const heroImage = {
  * hero image paint immediately (LCP).
  */
 export function Hero() {
-  const all = getAllProducts();
-  const spotlight = getProductBySlug("vetus-9");
-  const points = [`${all.length} veterinary ultrasound systems`, "Cart-based & portable", "Demo on request"];
+  const spotlight = getProductBySlug("vetus-e7");
 
   return (
     <section data-hero aria-labelledby="hero-heading" className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">
@@ -30,7 +27,7 @@ export function Hero() {
         <div>
           <p className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">
             <PawPrint aria-hidden="true" className="size-3.5 text-brand-600" />
-            Companion Animal · Medical Imaging
+            Companion Animal · Veterinary Ultrasound
           </p>
           <h1
             id="hero-heading"
@@ -65,25 +62,6 @@ export function Hero() {
               View Products
             </ButtonLink>
           </div>
-
-          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600">
-            {points.map((point) => (
-              <li key={point} className="inline-flex items-center gap-1.5">
-                <Check aria-hidden="true" className="size-4 text-brand-600" />
-                {point}
-              </li>
-            ))}
-            <li>
-              <a
-                href={`tel:${siteConfig.contact.phoneHref}`}
-                data-track-location="hero"
-                className="inline-flex items-center gap-1.5 font-medium text-slate-900 hover:text-brand-700"
-              >
-                <Phone aria-hidden="true" className="size-4 text-brand-600" />
-                {siteConfig.contact.phoneDisplay}
-              </a>
-            </li>
-          </ul>
         </div>
 
         <div className="relative">
@@ -111,7 +89,7 @@ export function Hero() {
                 <Image src={spotlight.image.src} alt="" fill sizes="56px" className="object-contain p-1" />
               </span>
               <span>
-                <span className="text-[0.625rem] font-bold tracking-[0.16em] text-brand-600 uppercase">New</span>
+                <span className="text-[0.625rem] font-bold tracking-[0.16em] text-brand-600 uppercase">Most popular</span>
                 <span className="block text-sm font-semibold text-slate-950 group-hover:text-brand-700">{spotlight.name}</span>
                 <span className="block text-xs leading-snug text-slate-500">{spotlight.productType}</span>
               </span>

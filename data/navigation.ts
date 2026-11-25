@@ -4,7 +4,6 @@ export interface NavItem {
 }
 
 export const mainNav: NavItem[] = [
-  { label: "Solutions", href: "/products/medical-imaging" },
   { label: "Products", href: "/products" },
   { label: "Companion Animals", href: "/companion-animals" },
   { label: "About", href: "/about" },
